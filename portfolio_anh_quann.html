@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio | Anh Quânn</title>
+  <style>
+    :root {
+      --bg: #f7e6a6;
+      --bg-2: #f4d35e;
+      --paper: rgba(255, 247, 219, 0.82);
+      --ink: #4d3319;
+      --accent: #ffd447;
+      --accent-deep: #dca11d;
+      --soft: rgba(255,255,255,0.35);
+      --shadow: 0 18px 45px rgba(113, 72, 8, 0.18);
+      --line: rgba(92, 62, 19, 0.16);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at top left, rgba(255,255,255,0.55), transparent 32%),
+        radial-gradient(circle at bottom right, rgba(255,229,130,0.55), transparent 25%),
+        linear-gradient(135deg, #fff4c6 0%, var(--bg) 42%, var(--bg-2) 100%);
+      min-height: 100vh;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+      background-size: 24px 24px;
+      pointer-events: none;
+      opacity: 0.35;
+      mix-blend-mode: soft-light;
+    }
+
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        radial-gradient(circle, rgba(88,55,0,0.07) 0.7px, transparent 0.9px);
+      background-size: 8px 8px;
+      opacity: 0.35;
+      animation: grain 8s steps(8) infinite;
+    }
+
+    @keyframes grain {
+      0% { transform: translate(0,0); }
+      25% { transform: translate(4px,-6px); }
+      50% { transform: translate(-4px,5px); }
+      75% { transform: translate(5px,3px); }
+      100% { transform: translate(0,0); }
+    }
+
+    .orb, .icon-float {
+      position: fixed;
+      z-index: 0;
+      pointer-events: none;
+      filter: blur(0.2px);
+      opacity: 0.65;
+      animation: drift 11s ease-in-out infinite;
+    }
+
+    .orb.one {
+      width: 180px; height: 180px;
+      background: radial-gradient(circle, rgba(255,247,190,.9), rgba(255,212,71,0));
+      top: 8%; left: 4%;
+    }
+
+    .orb.two {
+      width: 220px; height: 220px;
+      background: radial-gradient(circle, rgba(255,255,255,.7), rgba(255,212,71,0));
+      bottom: 7%; right: 6%;
+      animation-delay: -3s;
+    }
+
+    .icon-float {
+      font-size: 34px;
+      text-shadow: 0 8px 18px rgba(108,77,13,0.18);
+    }
+    .icon-float.a { top: 22%; right: 9%; animation-delay: -1s; }
+    .icon-float.b { bottom: 20%; left: 7%; animation-delay: -4s; }
+    .icon-float.c { top: 62%; right: 16%; animation-delay: -2s; }
+
+    @keyframes drift {
+      0%,100% { transform: translateY(0px) rotate(-2deg); }
+      50% { transform: translateY(-14px) rotate(2deg); }
+    }
+
+    .container {
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: blur(10px);
+      background: rgba(255, 244, 198, 0.55);
+      border-bottom: 1px solid rgba(107, 73, 11, 0.1);
+    }
+
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px 0;
+      gap: 16px;
+    }
+
+    .brand {
+      font-size: 1.15rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a, .btn {
+      text-decoration: none;
+      color: var(--ink);
+      padding: 10px 16px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.35);
+      transition: transform .25s ease, background .25s ease, box-shadow .25s ease;
+      box-shadow: 0 4px 16px rgba(125, 83, 14, 0.08);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .nav-links a:hover, .btn:hover {
+      transform: translateY(-3px);
+      background: rgba(255,255,255,0.6);
+      box-shadow: 0 12px 24px rgba(125, 83, 14, 0.12);
+    }
+
+    .hero {
+      min-height: calc(100vh - 76px);
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      align-items: center;
+      gap: 34px;
+      padding: 42px 0 52px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      gap: 8px;
+      align-items: center;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.4);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+      font-size: 0.96rem;
+      margin-bottom: 18px;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.8rem, 8vw, 5.2rem);
+      line-height: 0.95;
+      margin: 0 0 16px;
+      text-shadow: 2px 2px 0 rgba(255,255,255,0.45);
+    }
+
+    .hero h1 span {
+      display: inline-block;
+      color: #9a6506;
+      animation: glow 2.6s ease-in-out infinite;
+    }
+
+    @keyframes glow {
+      0%,100% { transform: translateY(0); text-shadow: 2px 2px 0 rgba(255,255,255,0.45), 0 0 0 rgba(255,212,71,0.5); }
+      50% { transform: translateY(-3px); text-shadow: 2px 2px 0 rgba(255,255,255,0.45), 0 0 24px rgba(255,212,71,0.35); }
+    }
+
+    .lead {
+      font-size: clamp(1.05rem, 2vw, 1.22rem);
+      line-height: 1.8;
+      max-width: 700px;
+      margin-bottom: 28px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .hero-card {
+      position: relative;
+      background: linear-gradient(180deg, rgba(255,255,255,0.58), rgba(255,248,229,0.72));
+      border: 1px solid rgba(114, 77, 15, 0.14);
+      box-shadow: var(--shadow);
+      border-radius: 28px;
+      padding: 24px;
+      transform: rotate(1.3deg);
+      overflow: hidden;
+    }
+
+    .hero-card::before {
+      content: "nostalgiacore";
+      position: absolute;
+      right: 14px;
+      top: 10px;
+      font-size: 0.85rem;
+      opacity: 0.45;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .avatar-wrap {
+      background: rgba(255,255,255,0.5);
+      padding: 14px 14px 30px;
+      border-radius: 18px;
+      box-shadow: 0 20px 40px rgba(110,73,7,.12);
+      position: relative;
+      transform: rotate(-2.3deg);
+    }
+
+    .tape {
+      position: absolute;
+      top: -10px;
+      left: 50%;
+      transform: translateX(-50%) rotate(-4deg);
+      width: 120px;
+      height: 28px;
+      background: rgba(255, 248, 210, 0.7);
+      border: 1px solid rgba(137,92,11,0.1);
+      border-radius: 6px;
+      backdrop-filter: blur(2px);
+    }
+
+    .avatar {
+      width: 100%;
+      aspect-ratio: 4/5;
+      object-fit: cover;
+      border-radius: 12px;
+      display: block;
+      filter: saturate(1.02) contrast(1.03) sepia(0.06);
+    }
+
+    .caption {
+      margin-top: 14px;
+      text-align: center;
+      font-style: italic;
+      letter-spacing: 0.03em;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .stat {
+      background: rgba(255,255,255,0.45);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 14px;
+    }
+
+    .stat b {
+      display: block;
+      font-size: 1.28rem;
+      margin-bottom: 4px;
+    }
+
+    section {
+      padding: 26px 0 60px;
+    }
+
+    .section-title {
+      font-size: clamp(1.8rem, 5vw, 2.6rem);
+      margin: 0 0 18px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .card {
+      background: var(--paper);
+      border: 1px solid rgba(114, 77, 15, 0.13);
+      border-radius: 24px;
+      padding: 22px;
+      box-shadow: var(--shadow);
+      transition: transform .28s ease, box-shadow .28s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::after {
+      content: "";
+      position: absolute;
+      inset: auto -10% -60% auto;
+      width: 160px;
+      height: 160px;
+      background: radial-gradient(circle, rgba(255,212,71,0.24), transparent 70%);
+      pointer-events: none;
+    }
+
+    .card:hover {
+      transform: translateY(-8px) rotate(-0.4deg);
+      box-shadow: 0 24px 42px rgba(112,73,6,0.16);
+    }
+
+    .card h3 {
+      margin: 0 0 10px;
+      font-size: 1.2rem;
+    }
+
+    .card p, .card li {
+      line-height: 1.75;
+      margin: 0;
+    }
+
+    .list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      gap: 10px;
+    }
+
+    .list li {
+      padding-left: 18px;
+      position: relative;
+    }
+
+    .list li::before {
+      content: "✦";
+      position: absolute;
+      left: 0;
+      top: 0;
+      color: var(--accent-deep);
+    }
+
+    .timeline {
+      display: grid;
+      gap: 16px;
+    }
+
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 110px 1fr;
+      gap: 16px;
+      align-items: start;
+      background: rgba(255,255,255,0.35);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 16px;
+    }
+
+    .timeline-item .year {
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      color: #8d5c08;
+    }
+
+    .contact-box {
+      display: grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 18px;
+      align-items: stretch;
+    }
+
+    .socials {
+      display: grid;
+      gap: 12px;
+    }
+
+    .socials a {
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 14px 16px;
+      border-radius: 16px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.35);
+      transition: transform .25s ease, background .25s ease;
+    }
+
+    .socials a:hover {
+      transform: translateX(5px);
+      background: rgba(255,255,255,0.55);
+    }
+
+    footer {
+      text-align: center;
+      padding: 24px 0 44px;
+      opacity: .8;
+      font-size: .95rem;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity .7s ease, transform .7s ease;
+    }
+
+    .reveal.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 920px) {
+      .hero, .contact-box, .grid {
+        grid-template-columns: 1fr;
+      }
+      .hero-card {
+        max-width: 500px;
+        margin: 0 auto;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .container { width: min(100% - 20px, 1120px); }
+      .nav { padding: 10px 0; }
+      .nav-links { gap: 8px; }
+      .nav-links a, .btn { padding: 9px 12px; font-size: 0.92rem; }
+      .hero { padding-top: 28px; }
+      .stats { grid-template-columns: 1fr; }
+      .timeline-item { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="orb one"></div>
+  <div class="orb two"></div>
+  <div class="icon-float a">🎞️</div>
+  <div class="icon-float b">📚</div>
+  <div class="icon-float c">✨</div>
+
+  <header class="topbar">
+    <div class="container nav">
+      <div class="brand">Anh Quânn</div>
+      <nav class="nav-links">
+        <a href="#about">Giới thiệu</a>
+        <a href="#journey">Hành trình</a>
+        <a href="#contact">Liên hệ</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <div class="hero-copy reveal">
+        <div class="eyebrow">🌼 Portfolio phong cách Nostalgiacore</div>
+        <h1>Xin chào,<br><span>Anh Quânn</span></h1>
+        <p class="lead">
+          Một người yêu những thước phim cũ, mùi giấy sách và những giá trị bền lâu.
+          Tôi theo đuổi tinh thần <b>nostalgiacore</b> với gam <b>vàng</b> ấm áp,
+          đồng thời phát huy thế mạnh về <b>quản lí</b> và <b>lãnh đạo</b> trong học tập và cuộc sống.
+        </p>
+        <div class="hero-actions">
+          <a class="btn" href="#contact">Kết nối với tôi</a>
+          <a class="btn" href="mailto:anhquanrambo@gmail.com">Gửi email</a>
+        </div>
+      </div>
+
+      <div class="hero-card reveal">
+        <div class="avatar-wrap">
+          <div class="tape"></div>
+          <img class="avatar" src="https://files.catbox.moe/36nreq.jpeg" alt="Ảnh đại diện Anh Quânn" />
+          <div class="caption">“Golden memories, steady leadership.”</div>
+        </div>
+        <div class="stats">
+          <div class="stat">
+            <b>12 năm</b>
+            <span>Làm lớp trưởng</span>
+          </div>
+          <div class="stat">
+            <b>2 thế mạnh</b>
+            <span>Quản lí &amp; lãnh đạo</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <h2 class="section-title reveal">Những điều về tôi</h2>
+      <div class="grid">
+        <article class="card reveal">
+          <h3>🌟 Phong cách</h3>
+          <p>
+            Nostalgiacore là cách tôi kể câu chuyện của mình: ấm áp, hoài niệm,
+            nhẹ nhàng nhưng vẫn có chiều sâu và cá tính.
+          </p>
+        </article>
+
+        <article class="card reveal">
+          <h3>🎬 Sở thích</h3>
+          <ul class="list">
+            <li>Xem phim để cảm nhận câu chuyện và cảm xúc</li>
+            <li>Đọc sách để mở rộng góc nhìn và nuôi dưỡng tư duy</li>
+          </ul>
+        </article>
+
+        <article class="card reveal">
+          <h3>🧠 Sở trường</h3>
+          <ul class="list">
+            <li>Quản lí công việc và sắp xếp tập thể</li>
+            <li>Lãnh đạo với tinh thần trách nhiệm</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section id="journey">
+      <h2 class="section-title reveal">Hành trình nổi bật</h2>
+      <div class="timeline">
+        <div class="timeline-item card reveal">
+          <div class="year">12 năm</div>
+          <div>
+            <h3>Thành tựu đáng tự hào</h3>
+            <p>
+              Giữ vai trò <b>lớp trưởng suốt 12 năm</b> là minh chứng cho sự tin tưởng,
+              trách nhiệm và khả năng dẫn dắt tập thể bền bỉ theo thời gian.
+            </p>
+          </div>
+        </div>
+
+        <div class="timeline-item card reveal">
+          <div class="year">Thế mạnh</div>
+          <div>
+            <h3>Kĩ năng cốt lõi</h3>
+            <p>
+              Tôi có khả năng tổ chức, điều phối, kết nối mọi người và đưa ra định hướng rõ ràng
+              trong các hoạt động chung.
+            </p>
+          </div>
+        </div>
+
+        <div class="timeline-item card reveal">
+          <div class="year">Tinh thần</div>
+          <div>
+            <h3>Dấu ấn cá nhân</h3>
+            <p>
+              Sự điềm tĩnh, ấm áp và phong thái hoài niệm giúp tôi tạo nên một hình ảnh riêng:
+              vừa gần gũi, vừa đáng tin cậy.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <h2 class="section-title reveal">Liên hệ &amp; mạng xã hội</h2>
+      <div class="contact-box">
+        <article class="card reveal">
+          <h3>💌 Kết nối cùng tôi</h3>
+          <p style="margin-bottom: 16px;">
+            Nếu bạn thích những cuộc trò chuyện về phim ảnh, sách, hoặc muốn kết nối với một người có tinh thần lãnh đạo và quản lí,
+            hãy nhắn cho tôi nhé.
+          </p>
+          <div class="socials">
+            <a href="mailto:anhquanrambo@gmail.com" target="_blank" rel="noreferrer">
+              <span>Email</span>
+              <strong>anhquanrambo@gmail.com</strong>
+            </a>
+            <a href="https://www.facebook.com/share/18trop24s4/?mibextid=wwXIfr" target="_blank" rel="noreferrer">
+              <span>Facebook</span>
+              <strong>Mở trang cá nhân</strong>
+            </a>
+            <a href="https://www.instagram.com/hna.nauq_/" target="_blank" rel="noreferrer">
+              <span>Instagram</span>
+              <strong>@hna.nauq_</strong>
+            </a>
+          </div>
+        </article>
+
+        <article class="card reveal">
+          <h3>📌 Tóm tắt nhanh</h3>
+          <ul class="list">
+            <li><b>Tên:</b> Anh Quânn</li>
+            <li><b>Màu chủ đạo:</b> Vàng</li>
+            <li><b>Phong cách:</b> Nostalgiacore</li>
+            <li><b>Sở thích:</b> Xem phim, đọc sách</li>
+            <li><b>Kĩ năng:</b> Quản lí, lãnh đạo</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    © 2026 • Portfolio của Anh Quânn • thiết kế theo tinh thần hoài niệm hiện đại
+  </footer>
+
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('show');
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
