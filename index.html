@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Anh Quânn</title>
+
   <style>
     :root {
       --bg: #f7e6a6;
@@ -17,8 +18,14 @@
       --line: rgba(92, 62, 19, 0.16);
     }
 
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       margin: 0;
       font-family: Georgia, "Times New Roman", serif;
@@ -65,7 +72,8 @@
       100% { transform: translate(0,0); }
     }
 
-    .orb, .icon-float {
+    .orb,
+    .icon-float {
       position: fixed;
       z-index: 0;
       pointer-events: none;
@@ -75,15 +83,19 @@
     }
 
     .orb.one {
-      width: 180px; height: 180px;
+      width: 180px;
+      height: 180px;
       background: radial-gradient(circle, rgba(255,247,190,.9), rgba(255,212,71,0));
-      top: 8%; left: 4%;
+      top: 8%;
+      left: 4%;
     }
 
     .orb.two {
-      width: 220px; height: 220px;
+      width: 220px;
+      height: 220px;
       background: radial-gradient(circle, rgba(255,255,255,.7), rgba(255,212,71,0));
-      bottom: 7%; right: 6%;
+      bottom: 7%;
+      right: 6%;
       animation-delay: -3s;
     }
 
@@ -91,13 +103,33 @@
       font-size: 34px;
       text-shadow: 0 8px 18px rgba(108,77,13,0.18);
     }
-    .icon-float.a { top: 22%; right: 9%; animation-delay: -1s; }
-    .icon-float.b { bottom: 20%; left: 7%; animation-delay: -4s; }
-    .icon-float.c { top: 62%; right: 16%; animation-delay: -2s; }
+
+    .icon-float.a {
+      top: 22%;
+      right: 9%;
+      animation-delay: -1s;
+    }
+
+    .icon-float.b {
+      bottom: 20%;
+      left: 7%;
+      animation-delay: -4s;
+    }
+
+    .icon-float.c {
+      top: 62%;
+      right: 16%;
+      animation-delay: -2s;
+    }
 
     @keyframes drift {
-      0%,100% { transform: translateY(0px) rotate(-2deg); }
-      50% { transform: translateY(-14px) rotate(2deg); }
+      0%,100% {
+        transform: translateY(0px) rotate(-2deg);
+      }
+
+      50% {
+        transform: translateY(-14px) rotate(2deg);
+      }
     }
 
     .container {
@@ -129,15 +161,18 @@
       letter-spacing: 0.12em;
       text-transform: uppercase;
       font-weight: 700;
+      white-space: nowrap;
     }
 
     .nav-links {
       display: flex;
       gap: 10px;
       flex-wrap: wrap;
+      justify-content: flex-end;
     }
 
-    .nav-links a, .btn {
+    .nav-links a,
+    .btn {
       text-decoration: none;
       color: var(--ink);
       padding: 10px 16px;
@@ -151,7 +186,8 @@
       gap: 8px;
     }
 
-    .nav-links a:hover, .btn:hover {
+    .nav-links a:hover,
+    .btn:hover {
       transform: translateY(-3px);
       background: rgba(255,255,255,0.6);
       box-shadow: 0 12px 24px rgba(125, 83, 14, 0.12);
@@ -193,8 +229,15 @@
     }
 
     @keyframes glow {
-      0%,100% { transform: translateY(0); text-shadow: 2px 2px 0 rgba(255,255,255,0.45), 0 0 0 rgba(255,212,71,0.5); }
-      50% { transform: translateY(-3px); text-shadow: 2px 2px 0 rgba(255,255,255,0.45), 0 0 24px rgba(255,212,71,0.35); }
+      0%,100% {
+        transform: translateY(0);
+        text-shadow: 2px 2px 0 rgba(255,255,255,0.45), 0 0 0 rgba(255,212,71,0.5);
+      }
+
+      50% {
+        transform: translateY(-3px);
+        text-shadow: 2px 2px 0 rgba(255,255,255,0.45), 0 0 24px rgba(255,212,71,0.35);
+      }
     }
 
     .lead {
@@ -299,12 +342,6 @@
       margin: 0 0 18px;
     }
 
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
-    }
-
     .card {
       background: var(--paper);
       border: 1px solid rgba(114, 77, 15, 0.13);
@@ -336,9 +373,34 @@
       font-size: 1.2rem;
     }
 
-    .card p, .card li {
+    .card p,
+    .card li {
       line-height: 1.75;
       margin: 0;
+    }
+
+    .intro-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+    }
+
+    .full-card {
+      grid-column: 1 / -1;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.42);
+      border: 1px solid var(--line);
+      font-size: 0.92rem;
+      margin-bottom: 12px;
+      color: #8d5c08;
+      font-weight: 700;
     }
 
     .list {
@@ -352,6 +414,7 @@
     .list li {
       padding-left: 18px;
       position: relative;
+      line-height: 1.75;
     }
 
     .list li::before {
@@ -434,9 +497,12 @@
     }
 
     @media (max-width: 920px) {
-      .hero, .contact-box, .grid {
+      .hero,
+      .contact-box,
+      .intro-grid {
         grid-template-columns: 1fr;
       }
+
       .hero-card {
         max-width: 500px;
         margin: 0 auto;
@@ -444,16 +510,47 @@
     }
 
     @media (max-width: 640px) {
-      .container { width: min(100% - 20px, 1120px); }
-      .nav { padding: 10px 0; }
-      .nav-links { gap: 8px; }
-      .nav-links a, .btn { padding: 9px 12px; font-size: 0.92rem; }
-      .hero { padding-top: 28px; }
-      .stats { grid-template-columns: 1fr; }
-      .timeline-item { grid-template-columns: 1fr; }
+      .container {
+        width: min(100% - 20px, 1120px);
+      }
+
+      .nav {
+        padding: 10px 0;
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .nav-links {
+        gap: 8px;
+        justify-content: flex-start;
+      }
+
+      .nav-links a,
+      .btn {
+        padding: 9px 12px;
+        font-size: 0.92rem;
+      }
+
+      .hero {
+        padding-top: 28px;
+      }
+
+      .stats {
+        grid-template-columns: 1fr;
+      }
+
+      .timeline-item {
+        grid-template-columns: 1fr;
+      }
+
+      .socials a {
+        align-items: flex-start;
+        flex-direction: column;
+      }
     }
   </style>
 </head>
+
 <body>
   <div class="orb one"></div>
   <div class="orb two"></div>
@@ -464,9 +561,15 @@
   <header class="topbar">
     <div class="container nav">
       <div class="brand">Anh Quânn</div>
+
       <nav class="nav-links">
         <a href="#about">Giới thiệu</a>
-        <a href="#journey">Hành trình</a>
+        <a href="#hobbies">Sở thích</a>
+        <a href="#personality">Tính cách</a>
+        <a href="#achievements">Thành tựu</a>
+        <a href="#skills">Kĩ năng</a>
+        <a href="#goals">Mục tiêu</a>
+        <a href="#survey">Khảo sát</a>
         <a href="#contact">Liên hệ</a>
       </nav>
     </div>
@@ -475,14 +578,20 @@
   <main class="container">
     <section class="hero">
       <div class="hero-copy reveal">
-        <div class="eyebrow">🌼Nguyễn Anh Quân</div>
-        <h1>Xin chào,<br><span>Anh Quânn</span></h1>
+        <div class="eyebrow">🌼 Nguyễn Anh Quân</div>
+
+        <h1>Xin chào, mình <br><span>Anh Quânn</span></h1>
+
         <p class="lead">
           Một người yêu những thước phim cũ, mùi giấy sách và những giá trị bền lâu.
           Tôi theo đuổi tinh thần <b>nostalgiacore</b> với gam <b>vàng</b> ấm áp,
-          đồng thời phát huy thế mạnh về <b>quản lí</b> và <b>lãnh đạo</b> trong học tập và cuộc sống.
+          đồng thời phát huy thế mạnh về <b>quản lí</b> và <b>lãnh đạo</b>
+          trong học tập cũng như cuộc sống.
         </p>
+
         <div class="hero-actions">
+          <a class="btn" href="#about">Tìm hiểu về tôi</a>
+          <a class="btn" href="#survey">Làm khảo sát</a>
           <a class="btn" href="#contact">Kết nối với tôi</a>
           <a class="btn" href="mailto:anhquanrambo@gmail.com">Gửi email</a>
         </div>
@@ -494,11 +603,13 @@
           <img class="avatar" src="https://files.catbox.moe/36nreq.jpeg" alt="Ảnh đại diện Anh Quânn" />
           <div class="caption">“Golden memories, steady leadership.”</div>
         </div>
+
         <div class="stats">
           <div class="stat">
             <b>12 năm</b>
             <span>Làm lớp trưởng</span>
           </div>
+
           <div class="stat">
             <b>2 thế mạnh</b>
             <span>Quản lí &amp; lãnh đạo</span>
@@ -508,90 +619,274 @@
     </section>
 
     <section id="about">
-      <h2 class="section-title reveal">Những điều về tôi</h2>
-      <div class="grid">
-        <article class="card reveal">
-          <h3>🌟 Phong cách</h3>
+      <h2 class="section-title reveal">Giới thiệu về tôi</h2>
+
+      <div class="intro-grid">
+        <article class="card reveal full-card">
+          <span class="tag">🌼 Tôi là ai?</span>
+          <h3>Nguyễn Anh Quân</h3>
           <p>
-            Nostalgiacore là cách tôi kể câu chuyện của mình: ấm áp, hoài niệm,
-            nhẹ nhàng nhưng vẫn có chiều sâu và cá tính.
+            Tôi là một người yêu thích sự nhẹ nhàng, hoài niệm và những giá trị bền lâu.
+            Với phong cách <b>nostalgiacore</b> cùng gam màu vàng ấm áp, tôi muốn thể hiện
+            một hình ảnh vừa gần gũi, vừa có chiều sâu, mang tinh thần tích cực, chân thành
+            và luôn hướng đến sự trưởng thành.
           </p>
         </article>
 
         <article class="card reveal">
-          <h3>🎬 Sở thích</h3>
-          <ul class="list">
-            <li>Xem phim để cảm nhận câu chuyện và cảm xúc</li>
-            <li>Đọc sách để mở rộng góc nhìn và nuôi dưỡng tư duy</li>
-          </ul>
+          <span class="tag">✨ Phong cách</span>
+          <h3>Nostalgiacore</h3>
+          <p>
+            Phong cách tôi theo đuổi là <b>nostalgiacore</b> — một nét đẹp mang màu sắc
+            hoài niệm, ấm áp và sâu lắng. Phong cách này giúp tôi thể hiện sự nhẹ nhàng,
+            cảm xúc và tình yêu dành cho những kí ức đẹp.
+          </p>
         </article>
 
         <article class="card reveal">
-          <h3>🧠 Sở trường</h3>
-          <ul class="list">
-            <li>Quản lí công việc và sắp xếp tập thể</li>
-            <li>Lãnh đạo với tinh thần trách nhiệm</li>
-          </ul>
+          <span class="tag">🌕 Màu chủ đạo</span>
+          <h3>Gam màu vàng ấm áp</h3>
+          <p>
+            Màu vàng không chỉ là màu sắc yêu thích, mà còn tượng trưng cho sự tích cực,
+            niềm tin và nguồn năng lượng ấm áp. Đây cũng là màu sắc giúp website mang cảm giác
+            gần gũi, cổ điển và có dấu ấn riêng.
+          </p>
         </article>
       </div>
     </section>
 
-    <section id="journey">
-      <h2 class="section-title reveal">Hành trình nổi bật</h2>
+    <section id="hobbies">
+      <h2 class="section-title reveal">Sở thích</h2>
+
+      <div class="intro-grid">
+        <article class="card reveal">
+          <span class="tag">🎬 Sở thích 01</span>
+          <h3>Xem phim</h3>
+          <p>
+            Tôi thích xem phim vì mỗi bộ phim đều mang đến một câu chuyện, một cảm xúc
+            và một góc nhìn khác nhau về cuộc sống. Qua phim ảnh, tôi có thể cảm nhận
+            được nhiều cung bậc cảm xúc, hiểu thêm về con người và học được những bài học
+            nhẹ nhàng nhưng sâu sắc.
+          </p>
+        </article>
+
+        <article class="card reveal">
+          <span class="tag">📚 Sở thích 02</span>
+          <h3>Đọc sách</h3>
+          <p>
+            Đọc sách là một sở thích giúp tôi mở rộng kiến thức, rèn luyện tư duy
+            và nuôi dưỡng tâm hồn. Những trang sách giúp tôi sống chậm hơn, suy nghĩ sâu hơn
+            và biết nhìn nhận mọi việc theo nhiều góc độ khác nhau.
+          </p>
+        </article>
+
+        <article class="card reveal full-card">
+          <span class="tag">🌿 Sở thích 03</span>
+          <h3>Yêu những điều giản dị</h3>
+          <p>
+            Bên cạnh phim ảnh và sách, tôi cũng yêu thích những khoảnh khắc bình yên,
+            những điều nhỏ bé nhưng ý nghĩa trong cuộc sống. Đó có thể là một buổi chiều yên tĩnh,
+            một bản nhạc nhẹ, một cuốn sách cũ hoặc một kỉ niệm đẹp được lưu giữ theo thời gian.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section id="personality">
+      <h2 class="section-title reveal">Tính cách</h2>
+
+      <div class="intro-grid">
+        <article class="card reveal">
+          <span class="tag">🤝 Tính cách 01</span>
+          <h3>Trách nhiệm</h3>
+          <p>
+            Tôi luôn cố gắng hoàn thành tốt những việc mình được giao và nghiêm túc với vai trò
+            của bản thân trong tập thể. Với tôi, trách nhiệm không chỉ là làm xong công việc,
+            mà còn là làm bằng sự cố gắng, cẩn thận và tinh thần tự giác.
+          </p>
+        </article>
+
+        <article class="card reveal">
+          <span class="tag">🍂 Tính cách 02</span>
+          <h3>Điềm tĩnh</h3>
+          <p>
+            Tôi hướng đến sự điềm tĩnh trong cách suy nghĩ và hành động. Khi gặp vấn đề,
+            tôi cố gắng quan sát, lắng nghe và tìm cách giải quyết phù hợp thay vì vội vàng
+            đưa ra quyết định.
+          </p>
+        </article>
+
+        <article class="card reveal">
+          <span class="tag">👂 Tính cách 03</span>
+          <h3>Biết lắng nghe</h3>
+          <p>
+            Tôi luôn coi trọng việc lắng nghe ý kiến của người khác. Trong tập thể,
+            lắng nghe giúp tôi hiểu hơn về suy nghĩ của mọi người, từ đó kết nối các thành viên
+            và tạo nên sự đoàn kết trong các hoạt động chung.
+          </p>
+        </article>
+
+        <article class="card reveal">
+          <span class="tag">🌟 Tính cách 04</span>
+          <h3>Tích cực và chân thành</h3>
+          <p>
+            Tôi luôn cố gắng giữ thái độ tích cực trong học tập cũng như cuộc sống.
+            Sự chân thành giúp tôi xây dựng những mối quan hệ tốt đẹp và tạo được sự tin tưởng
+            từ những người xung quanh.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section id="achievements">
+      <h2 class="section-title reveal">Thành tựu</h2>
+
       <div class="timeline">
         <div class="timeline-item card reveal">
           <div class="year">12 năm</div>
           <div>
-            <h3>Thành tựu đáng tự hào</h3>
+            <h3>Làm lớp trưởng</h3>
             <p>
-              Giữ vai trò <b>lớp trưởng suốt 12 năm</b> là minh chứng cho sự tin tưởng,
-              trách nhiệm và khả năng dẫn dắt tập thể bền bỉ theo thời gian.
+              Một dấu mốc đáng tự hào của tôi là giữ vai trò <b>lớp trưởng suốt 12 năm</b>.
+              Đây không chỉ là một chức vụ, mà còn là minh chứng cho sự tin tưởng của thầy cô,
+              bạn bè và tinh thần trách nhiệm mà tôi luôn cố gắng duy trì trong suốt quá trình học tập.
             </p>
           </div>
         </div>
 
         <div class="timeline-item card reveal">
-          <div class="year">Thế mạnh</div>
+          <div class="year">Tập thể</div>
           <div>
-            <h3>Kĩ năng cốt lõi</h3>
+            <h3>Cầu nối giữa thầy cô và lớp</h3>
             <p>
-              Tôi có khả năng tổ chức, điều phối, kết nối mọi người và đưa ra định hướng rõ ràng
-              trong các hoạt động chung.
+              Trong vai trò lớp trưởng, tôi có cơ hội trở thành cầu nối giữa thầy cô và các bạn.
+              Tôi học được cách truyền đạt thông tin, hỗ trợ tập thể, nhắc nhở mọi người
+              và cùng lớp hoàn thành tốt các nhiệm vụ được giao.
             </p>
           </div>
         </div>
 
         <div class="timeline-item card reveal">
-          <div class="year">Tinh thần</div>
+          <div class="year">Rèn luyện</div>
           <div>
-            <h3>Dấu ấn cá nhân</h3>
+            <h3>Trưởng thành qua từng năm học</h3>
             <p>
-              Sự điềm tĩnh, ấm áp và phong thái hoài niệm giúp tôi tạo nên một hình ảnh riêng:
-              vừa gần gũi, vừa đáng tin cậy.
+              Qua mỗi năm học, tôi không chỉ học thêm kiến thức mà còn rèn luyện được sự tự tin,
+              khả năng xử lí tình huống và tinh thần trách nhiệm. Những trải nghiệm ấy giúp tôi
+              trưởng thành hơn trong suy nghĩ và hành động.
             </p>
           </div>
         </div>
+      </div>
+    </section>
+
+    <section id="skills">
+      <h2 class="section-title reveal">Kĩ năng</h2>
+
+      <div class="intro-grid">
+        <article class="card reveal">
+          <span class="tag">🧠 Kĩ năng 01</span>
+          <h3>Quản lí công việc</h3>
+          <p>
+            Tôi có khả năng sắp xếp công việc, phân chia nhiệm vụ và quản lí thời gian.
+            Những trải nghiệm trong học tập và hoạt động lớp giúp tôi biết cách lập kế hoạch,
+            theo dõi tiến độ và xử lí các tình huống phát sinh một cách hợp lí.
+          </p>
+        </article>
+
+        <article class="card reveal">
+          <span class="tag">👑 Kĩ năng 02</span>
+          <h3>Lãnh đạo tập thể</h3>
+          <p>
+            Với tôi, lãnh đạo không chỉ là đứng đầu, mà còn là biết đồng hành, biết lắng nghe
+            và tạo động lực để mọi người cùng tiến bộ. Tôi luôn cố gắng giữ sự công bằng,
+            tích cực và trách nhiệm khi tham gia vào các hoạt động chung.
+          </p>
+        </article>
+
+        <article class="card reveal">
+          <span class="tag">📌 Kĩ năng 03</span>
+          <h3>Tổ chức và điều phối</h3>
+          <p>
+            Tôi biết cách kết nối mọi người, phân chia nhiệm vụ phù hợp và điều phối công việc
+            để tập thể cùng hoàn thành mục tiêu. Đây là kĩ năng tôi đã rèn luyện trong suốt quá trình
+            tham gia các hoạt động của lớp.
+          </p>
+        </article>
+
+        <article class="card reveal">
+          <span class="tag">💬 Kĩ năng 04</span>
+          <h3>Giao tiếp và kết nối</h3>
+          <p>
+            Giao tiếp giúp tôi truyền đạt thông tin rõ ràng, hiểu suy nghĩ của người khác
+            và xây dựng sự đoàn kết trong tập thể. Tôi luôn cố gắng lắng nghe, chia sẻ
+            và giữ tinh thần hợp tác trong mọi hoạt động.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section id="goals">
+      <h2 class="section-title reveal">Mục tiêu</h2>
+
+      <div class="intro-grid">
+        <article class="card reveal full-card">
+          <span class="tag">🚀 Hành trình phía trước</span>
+          <h3>Tiếp tục hoàn thiện bản thân</h3>
+          <p>
+            Trong tương lai, tôi mong muốn tiếp tục học hỏi, rèn luyện thêm nhiều kĩ năng mới
+            và phát huy tốt hơn khả năng quản lí, lãnh đạo của mình. Tôi tin rằng mỗi trải nghiệm
+            hôm nay đều là một phần quan trọng trong hành trình trưởng thành và tạo nên phiên bản
+            tốt hơn của bản thân.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section id="survey">
+      <h2 class="section-title reveal">Khảo sát</h2>
+
+      <div class="intro-grid">
+        <article class="card reveal full-card">
+          <span class="tag">📝 Khảo sát cá nhân</span>
+          <h3>Gửi phản hồi cho tôi</h3>
+          <p style="margin-bottom: 18px;">
+            Nếu bạn có thời gian, hãy tham gia khảo sát nhỏ này để giúp tôi có thêm phản hồi,
+            ý kiến và góc nhìn từ mọi người. Mỗi câu trả lời đều là một phần ý nghĩa giúp tôi
+            hoàn thiện hơn trong dự án cá nhân của mình.
+          </p>
+
+          <a class="btn" href="https://forms.gle/iZtH7PxXHmVeoi8D6" target="_blank" rel="noreferrer">
+            Mở biểu mẫu khảo sát
+          </a>
+        </article>
       </div>
     </section>
 
     <section id="contact">
       <h2 class="section-title reveal">Liên hệ &amp; mạng xã hội</h2>
+
       <div class="contact-box">
         <article class="card reveal">
           <h3>💌 Kết nối cùng tôi</h3>
+
           <p style="margin-bottom: 16px;">
-            Nếu bạn thích những cuộc trò chuyện về phim ảnh, sách, hoặc muốn kết nối với một người có tinh thần lãnh đạo và quản lí,
+            Nếu bạn thích những cuộc trò chuyện về phim ảnh, sách, những điều hoài niệm,
+            hoặc muốn kết nối với một người có tinh thần trách nhiệm, quản lí và lãnh đạo,
             hãy nhắn cho tôi nhé.
           </p>
+
           <div class="socials">
             <a href="mailto:anhquanrambo@gmail.com" target="_blank" rel="noreferrer">
               <span>Email</span>
               <strong>anhquanrambo@gmail.com</strong>
             </a>
+
             <a href="https://www.facebook.com/share/18trop24s4/?mibextid=wwXIfr" target="_blank" rel="noreferrer">
               <span>Facebook</span>
               <strong>Mở trang cá nhân</strong>
             </a>
+
             <a href="https://www.instagram.com/hna.nauq_/" target="_blank" rel="noreferrer">
               <span>Instagram</span>
               <strong>@hna.nauq_</strong>
@@ -601,12 +896,17 @@
 
         <article class="card reveal">
           <h3>📌 Tóm tắt nhanh</h3>
+
           <ul class="list">
-            <li><b>Tên:</b> Anh Quânn</li>
+            <li><b>Tên:</b> Nguyễn Anh Quân</li>
+            <li><b>Biệt danh:</b> Anh Quânn</li>
             <li><b>Màu chủ đạo:</b> Vàng</li>
             <li><b>Phong cách:</b> Nostalgiacore</li>
             <li><b>Sở thích:</b> Xem phim, đọc sách</li>
-            <li><b>Kĩ năng:</b> Quản lí, lãnh đạo</li>
+            <li><b>Tính cách:</b> Trách nhiệm, điềm tĩnh, biết lắng nghe</li>
+            <li><b>Thành tựu:</b> 12 năm làm lớp trưởng</li>
+            <li><b>Kĩ năng:</b> Quản lí, lãnh đạo, tổ chức</li>
+            <li><b>Khảo sát:</b> Có biểu mẫu phản hồi riêng</li>
           </ul>
         </article>
       </div>
@@ -614,13 +914,15 @@
   </main>
 
   <footer>
-    © 2026 • Bản quyền của website thuộc về dự án cá nhân của: Nguyễn Anh Quân lớp 12A3 K42-THPT Bỉm Sơn
+    © 2026 • Bản quyền của website thuộc về dự án cá nhân của: Nguyễn Anh Quân lớp 12A3 K42 - THPT Bỉm Sơn
   </footer>
 
   <script>
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
-        if (entry.isIntersecting) entry.target.classList.add('show');
+        if (entry.isIntersecting) {
+          entry.target.classList.add('show');
+        }
       });
     }, { threshold: 0.12 });
 
